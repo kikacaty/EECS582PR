@@ -1,21 +1,23 @@
 # [END-TO-END ARGUMENTS IN SYSTEM DESIGN](http://web.eecs.umich.edu/~barisk/teaching/eecs582/end-to-end.pdf)
 
-###### Yulong Cao
+###### J.H. Saltzer, D.P. Reed and D.D. Clark*
 
 ---
 
 ### What is the Problem? [Good papers generally solve *a single* problem]
 
-Existing performance debugging methods for complex distributed systems do not provide useful information about end-to-end performance characteristics, because it is challenging to construct an execution model of requests in a highly-distributed heterogeneous system. 
+Some functionalities provided at low levels of a system might have little value compared to the cost of implementing them at such low levels. A new system design principal of end-to-end arguments should be proposed to replace the original designs in certain circumstances in distributed computer systems.
 
 ### Summary [Up to 3 sentences]
 
-The Mystery Machine analyzes end-to-end request executions in a modern Internet service (Facebook) to automatically infer the request execution model and the performance behavior by making minor changes to the existing logging infrastructure. Mystery Machine relies on the law of large numbers to automatically build causal relationships between the components (segments) of a request. Using the findings of The Mystery Machine, connections with no slack (i.e., room for deferring) can be prioritized to improve their end-to-end latency while connections with enough slack can be deprioritized without harming their end-to-end latency.
+End-to-end arguments propose that only necessary functions should be provided in a communication subsystems.
+Desired functions can be and better be implemented by the users who know the their requirements better.
+To justify the arguments, the authors provide case studies on topic include bit error recovery, security using encryption, duplicate message suppression, recovery from system crashes, and delivery acknowledgement.
 
 ### Key Insights [Up to 2 insights]
 
-- One can automatically construct a model of request execution by generating a large number of potential hypotheses about program behavior and rejecting the hypotheses contradicted by the empirical observations. This is an example of the more general idea of *iteratively refining likely execution invariants*.
-- Complex performance optimizations in a large scale Internet service can be validated without the actual implementation effort. This is possible by relying on the inherent variability in system behavior that manifests naturally over large number of requests.
+- Implement complex and powerful functions in low levels may be painful for both the users and the developers. For developers, it is hard to write complex and correct program at low level. For users, those with simple requirements have to afford the equal cost as those with higher demands, since the communication subsystems is the same.
+- In layered communication protocols, end-to-end arguments can used as a criteria of deciding which layer a function should be assigned to.
 
 ### Notable Design Details/Strengths [Up to 2 details/strengths]
 
