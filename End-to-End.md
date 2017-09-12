@@ -21,20 +21,21 @@ To justify the arguments, the authors provide case studies on topic include bit 
 
 ### Notable Design Details/Strengths [Up to 2 details/strengths]
 
-- UberTrace, which is the end-to-end request tracing component that Mystery Machine relies on, uses sampling to reduce overhead. However, sampling reduces the probability that individual logging systems monitor the same set of requests. In order to perform targeted request monitoring, UberTrace propagates the decision about whether or not to monitor a given request through all logging subsystems along the path of the request.
-- A key strength of The Mystery machine is that it discovers and updates dependencies in a request automatically. This is a key feature because the underlying logging infrastructure is constantly evolving.
+- End-to-end arguments enables the simplest implementation for the communication subsystems.
+- End-to-end arguments leave the implementation of functions to the users who know the requirements best
 
 ### Limitations/Weaknesses [up to 2 weaknesses]
 
-- The Mystery Machine could recompute model changes incrementally rather than from scratch to account for the changes in the request model.
-- The Mystery Machine makes the assumption that the segments in a call graph are acyclic. It is unclear how the system design would need to be changed in the presence of cycles (e.g., what happens when the same <event, task> pair appear more than once in a request trace).
+- The end-to-end arguments might not work to certain systems such as speech communication system.
+- Implementing functions at higher levels usually have higher cost at performance than implementing it at lower levels.
 
 ### Summary of Key Results [Up to 3 results]
 
-- There is significant variation in the contribution of major end-to-end performance components (servers, network, and client) to the critical path. One can use this variation to provide differentiated service (e.g., prioritizing service where the server has no slack, whereas deprioritizing those where network and client latency will likely dominate).
-- Slack tends to remain stable for a given user across multiple Facebook sessions, so past slack information can be used to predict the slack of the current connection.
+- End-to-end arguments provide more simple yet higher performance solution to problems like bit error recovery, security using encryption, duplicate
+message suppression, recovery from system crashes, and delivery acknowledgement.
+- End-to-end arguments have limitations on certain systems such as real time speech communication system.
+- End-to-end arguments provide a criteria to assign functions to layers in layered communication protocols.
 
 ### Open Questions [Where to go from here?]
 
-- The performance properties analyzed by the Mystery machine are fairly high-level. One interesting direction would be to extend this work to gather more information in a targeted way to do more low-level performance debugging (e.g., what code is responsible for the slow down?).
-- The scope of the work can be extended to look into end-to-end performance analysis for mobile platforms in addition to the desktop.
+- In this paper, the author provide several use cases for the end-to-end arguments with reasoning the advantages of using such principal. However, it is vague on how simple should the functions at low level be. Simpler implementation at low level is a trade off for better customization and flexibility at higher level, with a cost of performance. Therefore, too simple a implementation at low level will lead to suffering of performance and reimplementation of the same things at high level. Maybe a more detailed criteria should be proposed for the developers to determine the assignment of functions.
